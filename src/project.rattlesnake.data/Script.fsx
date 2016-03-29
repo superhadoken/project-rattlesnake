@@ -2,6 +2,7 @@
 open project.rattlesnake.data
 open System.IO
 open System
+open System.Configuration
 
 type Observation = { Date:DateTime; HomeTeam: string; AwayTeam: string; HomeGoals: int; AwayGoals: int}
 
@@ -19,5 +20,5 @@ let reader path =
     data.[1..]
     |> Array.map toObservation
 
-let trainingPath = @"C:\Users\Chris Hey\Documents\Projects\Git\project-rattlesnake\data\TestSample.csv"
+let trainingPath = ConfigurationManager.AppSettings.Item("data.file")
 let trainingData = reader trainingPath
